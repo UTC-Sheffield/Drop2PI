@@ -127,7 +127,7 @@ class Client(object):
             cls._check_delete(tmp_path)
 
         cls._check_delete(path)
-
+        
     @classmethod
     def _check_delete(cls, path):
         if not config.delete_local_file:
@@ -140,7 +140,12 @@ class Client(object):
             # pylint: disable=E1103
             m = client.metadata(path)
             if m.get('is_deleted'):
-                cls.delete(path)
+                fullpath = config.path_to_watch+path 
+                if os.path.isdir(fullpath):
+                    os.removedirs(fullpath)
+                else:
+                    os.remove(fullpath)
+                
             # pylint: enable=E1103
         except:
             pass
