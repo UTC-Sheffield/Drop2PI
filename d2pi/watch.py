@@ -159,7 +159,7 @@ class Watcher(object):
                     logger.info('Auto sync every %s second' %
                                 config.auto_aync_time)
                     if not observer.event_queue.unfinished_tasks:
-                        self.sync_download()
+                        #self.sync_download()
                         client.check_dir_deleted()
                     logger.info('Auto check downloaded file or folder')
                     client.check_dir_deleted()
